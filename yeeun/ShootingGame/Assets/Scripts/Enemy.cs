@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter(Collision other){
         // 충돌 시작
 
-        // 2. 폭발 효과 고앙에서 폭발 효과 하나 생성
+        // 2. 폭발 효과 공장에서 폭발 효과 하나 생성
         GameObject explosion = Instantiate(explosionFactory);
 
         // 3. 폴발표과를 발생시킴
@@ -49,36 +49,21 @@ public class Enemy : MonoBehaviour
         Destroy(other.gameObject); // 총알 파괴
         Destroy(gameObject); // 적 파괴
 
+
         // [스코어 기록하기]
         // 1. 씬에서 ScoreManager 객체를 찾아옴
-        GameObject smObject = GameObject.Find("ScoreManager");
+        // GameObject smObject = GameObject.Find("ScoreManager");
 
         // 2. ScoreManager 게임 오브젝트에서 ScoreManager 컴포넌트(ScoreManager 스크립트)를 가져옴
-        ScoreManager sm = smObject.GetComponent<ScoreManager>();
+        // ScoreManager sm = smObject.GetComponent<ScoreManager>();
 
+        // sm.SetScore(sm.GetScore() + 1);
+        
+        // 싱글턴 디자인 패턴을 사용해서 스코어 기록하기
+        //ScoreManager.Instance.SetScore(ScoreManager.Instance.GetScore() + 1);
 
-        // // 3. ScoreManager 클래스의 속성에 값 할당
-        // sm.currentScore++;
-
-        // // 4. 화면에 현재 점수 표시하기
-        // sm.currentScoreUI.text = "현재 점수: " + sm.currentScore;
-
-
-        // // [최고 점수 기록하기]
-        // // 1. 현재 점수가 최고 점수를 초과했다면
-        // if(sm.currentScore > sm.bestScore){
-        //     // 2. 최고 점수 갱신
-        //     sm.bestScore = sm.currentScore;
-
-        //     // 3. 최고 점수 UI에 표시
-        //     sm.bestScoreUI.text = "최고 점수: " + sm.bestScore;
-
-        //     // [최고 점수 클라이언트에 저장하기]
-        //     PlayerPrefs.SetInt("Best Score", sm.bestScore); // PlayerPrefs객체: 키-값 형태로 값 저장 
-        // }
-
-        // 33. ScoreManager의 get/set함수 사용
-        sm.SetScore(sm.GetScore() + 1);
+        // + get/set 프로퍼티 사용하기
+        ScoreManager.Instance.Score++;
 
     }
     private void OnCollisionStay(Collision other){
