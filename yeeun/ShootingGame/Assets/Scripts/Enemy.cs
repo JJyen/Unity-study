@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 5; // 이동속도
     Vector3 dir;
+    public GameObject explosionFactory; // 폭발 공장 주소 - 외부에서 값 설정
     void Start()
     {
         // 0부터 9까지의 10개의 값 중에 하나를 랜덤으로 가져온다
@@ -34,8 +35,15 @@ public class Enemy : MonoBehaviour
         transform.Translate(dir * speed * Time.deltaTime);
     }
 
+    //1. 적이 다른 물체와 충돌하면
     private void OnCollisionEnter(Collision other){
         // 충돌 시작
+
+        // 2. 폭발 효과 고앙에서 폭발 효과 하나 생성
+        GameObject explosion = Instantiate(explosionFactory);
+
+        // 3. 폴발표과를 발생시킴
+        explosion.transform.position = transform.position;
 
         // Destroy(): 게임 오브젝트를 파괴하는 함수
         Destroy(other.gameObject); // 총알 파괴
@@ -45,6 +53,6 @@ public class Enemy : MonoBehaviour
         // 충돌 중
     }
     private void OnCollisionExit(Collision other){
-        // 충돌 끝
+        // 충돌 끝 
     }
 }
