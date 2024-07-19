@@ -7,8 +7,10 @@ public class Enemy : MonoBehaviour
     public float speed = 5; // 이동속도
     Vector3 dir;
     public GameObject explosionFactory; // 폭발 공장 주소 - 외부에서 값 설정
-    void Start()
-    {
+    
+    void Start(){}
+
+    void OnEnable(){
         // 0부터 9까지의 10개의 값 중에 하나를 랜덤으로 가져온다
         int randValue = UnityEngine.Random.Range(0,10);
 
@@ -26,7 +28,6 @@ public class Enemy : MonoBehaviour
             // 기본 동작
             dir = Vector3.down;
         }
-
     }
 
     void Update()
@@ -46,19 +47,16 @@ public class Enemy : MonoBehaviour
         explosion.transform.position = transform.position;
 
         // Destroy(): 게임 오브젝트를 파괴하는 함수
-        Destroy(other.gameObject); // 총알 파괴
-        Destroy(gameObject); // 적 파괴
+        // 적과 총알이 충돌했을 때 총알이 파괴되어 존재하지 않는 객체를 참조하는 문제를 해결하기 위해 총알 파괴X -> 비활성화
+        // 1. 충돌한 물체가 총알이라면
+        if(other.gameObject.name.Contains("Bullet")){
+            // 2. 총돌한 물체(총알) 비활성화
+            other.gameObject.SetActive(false);
+        }else{
+            Destroy(other.gameObject); // 플레이어..?
+        }
+         gameObject.SetActive(false); // 에너미 비활성화
 
-
-        // [스코어 기록하기]
-        // 1. 씬에서 ScoreManager 객체를 찾아옴
-        // GameObject smObject = GameObject.Find("ScoreManager");
-
-        // 2. ScoreManager 게임 오브젝트에서 ScoreManager 컴포넌트(ScoreManager 스크립트)를 가져옴
-        // ScoreManager sm = smObject.GetComponent<ScoreManager>();
-
-        // sm.SetScore(sm.GetScore() + 1);
-        
         // 싱글턴 디자인 패턴을 사용해서 스코어 기록하기
         //ScoreManager.Instance.SetScore(ScoreManager.Instance.GetScore() + 1);
 
