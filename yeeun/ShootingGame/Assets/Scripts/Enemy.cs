@@ -52,10 +52,23 @@ public class Enemy : MonoBehaviour
         if(other.gameObject.name.Contains("Bullet")){
             // 2. 총돌한 물체(총알) 비활성화
             other.gameObject.SetActive(false);
+
+            // PlayerFire 클래스 가져오기
+            PlayerFire player = GameObject.Find("Player").GetComponent<PlayerFire>();
+
+            // 리스트에 총알 삽입
+            player.bulletObjectPool.Add(other.gameObject);            
+
         }else{
             Destroy(other.gameObject); // 플레이어..?
         }
-         gameObject.SetActive(false); // 에너미 비활성화
+        gameObject.SetActive(false); // 에너미 비활성화
+
+        // EnemyManager 클래스 가져오기
+        EnemyManager manager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+
+        // 리스트에 에너미 삽입
+        manager.enemyObjectPool.Add(other.gameObject);
 
         // 싱글턴 디자인 패턴을 사용해서 스코어 기록하기
         //ScoreManager.Instance.SetScore(ScoreManager.Instance.GetScore() + 1);

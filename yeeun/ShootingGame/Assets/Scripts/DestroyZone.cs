@@ -26,6 +26,23 @@ public class DestroyZone : MonoBehaviour
             other.gameObject.name.Contains("Enemy")){
                 // 2. 충돌한 물체 비활성화
                 other.gameObject.SetActive(false);
+
+                // 3. 총돌한 물체가 총알일 경우 총알 리스트에 삽입
+                if(other.gameObject.name.Contains("Bullet")){
+                    // PlayerFire 클래스 가져오기
+                    PlayerFire player = GameObject.Find("Player").GetComponent<PlayerFire>();
+
+                    // 리스트에 총알 삽입
+                    player.bulletObjectPool.Add(other.gameObject);
+
+                } else if(other.gameObject.name.Contains("Enemy")){
+                    // EnemyManager 클래스 가져오기
+                    EnemyManager player = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+
+                    // 리스트에 에너미 삽입
+                    player.enemyObjectPool.Add(other.gameObject);
+
+                }
             }
     }
 }
