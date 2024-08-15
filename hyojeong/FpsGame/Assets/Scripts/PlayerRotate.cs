@@ -10,6 +10,11 @@ public class PlayerRotate : MonoBehaviour
     // 회전 값 변수
     float mx = 0;
 
+    void Start()
+    {
+
+    }
+
     void Update()
     {
         // 게임 상태가 "게임 중" 상태일 때에만 조작 가능하게 한다.
@@ -18,9 +23,8 @@ public class PlayerRotate : MonoBehaviour
             return;
         }
 
-        // 사용자의 마우스 입력을 받아 물체를 회전시키고 싶다.
-
-        // 1. 마우스 입력을 받는다.
+        // 사용자의 마우스 입력을 받아서 플레이어를 회전시키고 싶다.       
+        // 1. 마우스 좌우 입력을 받는다.
         float mouse_X = Input.GetAxis("Mouse X");
 
         // 1-1. 회전 값 변수에 마우스 입력 값만큼 미리 누적시킨다.

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BombAction : MonoBehaviour
 {
-    // 폭발 이팩트 프리팹 변수
+    // 폭발 이펙트 프리팹 변수
     public GameObject bombEffect;
+
     // 충돌했을 때의 처리
     private void OnCollisionEnter(Collision collision)
     {

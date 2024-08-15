@@ -36,12 +36,10 @@ public class PlayerFire : MonoBehaviour
             return;
         }
 
-        // 마우스 오른쪽 버튼을 누르면 시선이 바라보는 방향으로 수류탄을 던지고 싶다.
-
-        // 1. 마우스 오른쪽 버튼을 입력받는다.
+        // 마우스 오른쪽 버튼 입력을 받는다.
         if (Input.GetMouseButtonDown(1))
         {
-            // 수류탄 오브젝트를 생성한 후 수류탄의 생성 위치를 발사 위치로 한다.
+            // 수류탄 오브젝트를 생성하고, 수류탄의 생성 위치를 발사 위치로 한다.
             GameObject bomb = Instantiate(bombFactory);
             bomb.transform.position = firePosition.transform.position;
 
@@ -53,13 +51,16 @@ public class PlayerFire : MonoBehaviour
         }
 
         // 마우스 왼쪽 버튼을 누르면 시선이 바라보는 방향으로 총을 발사하고 싶다.
-        // 마우스 왼쪽 버튼을 입력받는다.
-        if(Input.GetMouseButtonDown(0))
+
+        // 마우스 왼쪽 버튼 입력을 받는다.
+        if (Input.GetMouseButtonDown(0))
         {
-            // 레이를 생성한 후 발사될 위치와 진행 방향을 설정한다.
+            // 레이를 생성하고 발사될 위치와 진행 방향을 설정한다.
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
             // 레이가 부딪힌 대상의 정보를 저장할 변수를 생성한다.
             RaycastHit hitInfo = new RaycastHit();
+
             // 레이를 발사하고, 만일 부딪힌 물체가 있으면...
             if (Physics.Raycast(ray, out hitInfo))
             {

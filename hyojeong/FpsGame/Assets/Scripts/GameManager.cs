@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // ½Ì±ÛÅÏ º¯¼ö
+    // ½Ì±ÛÅæ º¯¼ö
     public static GameManager gm;
 
     private void Awake()
@@ -93,4 +94,6 @@ public class GameManager : MonoBehaviour
             gState = GameState.GameOver;
         }
     }
+
+
 }
