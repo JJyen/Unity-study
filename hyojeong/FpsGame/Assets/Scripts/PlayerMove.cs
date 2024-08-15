@@ -32,6 +32,9 @@ public class PlayerMove : MonoBehaviour
     // hp 슬라이더 변수
     public Slider hpSlider;
 
+    // Hit 효과 오브젝트
+    public GameObject hitEffect;
+
     private void Start()
     {
         // 캐릭터 콘트롤러 컴포넌트 받아오기
@@ -91,5 +94,25 @@ public class PlayerMove : MonoBehaviour
     {
         // 에너미의 공격력만큼 플레이어의 체력을 깎는다.
         hp -= damage;
+
+        // 만일, 플레이어의 체력이 0보다 크면 피격 효과를 출력한다.
+        if (hp > 0)
+        {
+            // 피격 이펙트 코루틴을 시작한다.
+            StartCoroutine(PlayHitEffect());
+        }
+    }
+
+    // 피격 효과 코루틴 함수
+    IEnumerator PlayHitEffect()
+    {
+        // 1. 피격 UI를 활성화 한다.
+        hitEffect.SetActive(true);
+
+        // 2. 0.3초간 대기한다.
+        yield return new WaitForSeconds(0.3f);
+
+        // 3. 피격 UI를 비활성화 한다.
+        hitEffect.SetActive(false);
     }
 }
