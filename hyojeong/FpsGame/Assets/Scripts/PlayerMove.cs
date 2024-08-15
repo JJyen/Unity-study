@@ -43,6 +43,11 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        // 게임 상태가 "게임 중" 상태일 때에만 조작 가능하게 한다.
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
         // wase 키를 누르면 입력하면 캐릭터를 그 방향으로 이동시키고 싶다.
         // spacebar 키를 누르면 캐릭터를 수직으로 점프시키고 싶다.
 
