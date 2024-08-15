@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyFSM : MonoBehaviour
 {
@@ -51,6 +52,12 @@ public class EnemyFSM : MonoBehaviour
     // 에너미의 체력
     public int hp = 15;
 
+    // 에너미의 최대 체력
+    int maxHp = 15;
+
+    // 에너미 hp Slider 변수
+    public Slider hpSlider;
+
     void Start()
     {
         // 최초의 에너미 상태는 대기 상태(Idle)로 한다.
@@ -90,6 +97,9 @@ public class EnemyFSM : MonoBehaviour
                 //Die();
                 break;
         }
+
+        // 현재 hp(%)를 hp 슬라이더의 value에 반영한다.
+        hpSlider.value = (float)hp / (float)maxHp;
     }
 
     void Idle()
