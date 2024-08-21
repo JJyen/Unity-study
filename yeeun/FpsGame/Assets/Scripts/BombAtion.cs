@@ -17,16 +17,5 @@ public class BombAtion : MonoBehaviour
         // 본인 제거
         Destroy(gameObject);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
