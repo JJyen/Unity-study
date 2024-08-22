@@ -14,3 +14,4 @@ public class CamFollow : MonoBehaviour
         transform.position = target.position;
     }
 }
+

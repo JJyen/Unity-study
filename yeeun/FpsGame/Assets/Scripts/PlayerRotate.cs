@@ -10,6 +10,13 @@ public class PlayerRotate : MonoBehaviour
 
     void Update()
     {
+
+        // 게임 상태가 "게임 중" 상태일 때에만 조작 가능하게 한다.
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
+
         float mouse_X = Input.GetAxis("Mouse X");
 
         mx += mouse_X*rotSpeed*Time.deltaTime;

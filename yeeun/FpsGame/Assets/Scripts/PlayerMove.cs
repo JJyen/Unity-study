@@ -35,10 +35,16 @@ public class PlayerMove : MonoBehaviour
     // Hit 효과 오브젝트
     public GameObject hitEffect;
 
+    // 애니메이터 변수
+    Animator anim;
+
     void Start()
     {
         // 캐릭터 콘트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
+
+        // 애니메이터 받아오기
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -59,6 +65,9 @@ public class PlayerMove : MonoBehaviour
         // 2. 이동 방향을 설정한다.
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized;
+
+        // 이동 블랜딩 트리 호출 및 벡터 크기 값을 넘긴다.
+        anim.SetFloat("MoveMotion", dir.magnitude); // MoveMotion이라는 블랜딩 트리에 dir.magnitude 값을 넘김
 
         // 2-1. 메인 카메라를 기준으로 방향을 변환한다.
         dir = Camera.main.transform.TransformDirection(dir);
