@@ -38,6 +38,9 @@ public class PlayerFire : MonoBehaviour
     // 무기 모드 텍스트
     public Text wModeText;
 
+    // 총 발사 효과 오브젝트 배열
+    public GameObject[] eff_Flash;
+
     void Start()
     {
         // 피격 이펙트 오브젝트에서 파티클 시스템 컴포넌트 가져오기
@@ -151,6 +154,25 @@ public class PlayerFire : MonoBehaviour
                     ps.Play();
                 }
             }
+
+            // 총 이펙트
+            StartCoroutine(ShootEffectOn(0.05f));
         }
+    }
+
+    // 총구 이펙트 코루틴 함수
+    IEnumerator ShootEffectOn(float duration)
+    {
+        // 랜덤하게 숫자를 뽑는다.
+        int num = Random.Range(0, eff_Flash.Length);
+
+        // 이펙트 오브젝트 배열에서 뽑힌 숫자에 해당하는 이펙트 오브젝트 활성화
+        eff_Flash[num].SetActive(true);
+
+        // 지정한 시간만큼 기다린다.
+        yield return new WaitForSeconds(duration);
+
+        // 이펙트 오브젝트 다시 비활성화
+        eff_Flash[num].SetActive(false);
     }
 }
