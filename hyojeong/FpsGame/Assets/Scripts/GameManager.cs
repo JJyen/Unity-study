@@ -138,6 +138,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         // 현재 씬 번호를 다시 로드한다.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // 로딩 화면 씬을 로드한다.
+        SceneManager.LoadScene(1);
     }
 
     // 게임 종료 옵션
