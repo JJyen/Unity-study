@@ -140,6 +140,9 @@ public class GameManager : MonoBehaviour
 
         // 현재 씬 번호 다시 로드
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // 로딩화면 씬 로드
+        SceneManager.LoadScene(1);
     }
 
     // 게임 종료 옵션
